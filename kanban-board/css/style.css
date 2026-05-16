@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: auto;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Board Container */
+.board-container {
+    padding: 24px;
+    min-height: calc(100vh - 72px);
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.board-header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.board-columns {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    align-items: flex-start;
+}
+
+/* Column Styles */
+.column {
+    min-width: 320px;
+    width: 320px;
+    background: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 150px);
+}
+
+.column-header {
+    padding: 16px;
+    background: white;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 3px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+}
+
+.column-header:active {
+    cursor: grabbing;
+}
+
+.column-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-count {
+    background: #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.column-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.column-actions i {
+    cursor: pointer;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+}
+
+.column-actions i:hover {
+    color: #ef4444;
+}
+
+/* Tasks Container */
+.tasks-container {
+    flex: 1;
+    padding: 12px;
+    min-height: 300px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Task Card */
+.task-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    cursor: grab;
+    transition: all 0.3s ease;
+    border-left: 3px solid;
+}
+
+.task-card:active {
+    cursor: grabbing;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.task-card.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.task-title {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-actions i {
+    cursor: pointer;
+    font-size: 12px;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+}
+
+.task-actions i:hover {
+    color: #667eea;
+}
+
+.task-description {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.7rem;
+}
+
+.task-priority {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.priority-high {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.priority-medium {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+.priority-low {
+    background: #d1fae5;
+    color: #10b981;
+}
+
+.task-due-date {
+    color: #94a3b8;
+    font-size: 0.7rem;
+}
+
+.task-labels {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.task-label {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.label-bug { background: #fee2e2; color: #ef4444; }
+.label-feature { background: #dbeafe; color: #3b82f6; }
+.label-enhancement { background: #d1fae5; color: #10b981; }
+.label-documentation { background: #fef3c7; color: #f59e0b; }
+.label-design { background: #f3e8ff; color: #8b5cf6; }
+
+/* Add Task Button */
+.add-task-btn {
+    background: none;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    text-align: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.add-task-btn:hover {
+    background: #e2e8f0;
+    color: #667eea;
+}
+
+/* Label Selector */
+.label-selector {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.label-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.label-badge.selected {
+    background: #667eea;
+    color: white;
+}
+
+.selected-label {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Column Drop Zone */
+.column.drag-over {
+    background: #e2e8f0;
+    transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .board-container {
+        padding: 16px;
+    }
+    
+    .column {
+        min-width: 280px;
+        width: 280px;
+    }
+    
+    .board-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.column {
+    animation: slideIn 0.3s ease;
+}
+
+.task-card {
+    animation: slideIn 0.2s ease;
+}
